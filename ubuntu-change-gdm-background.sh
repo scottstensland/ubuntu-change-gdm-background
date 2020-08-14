@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-#  github.com/scottstensland/ubuntu-change-gdm-background
+#  https://github.com/scottstensland/ubuntu-change-gdm-background
 #
-# closely based on https://github.com/thiggy01/ubuntu-20.04-change-gdm-background
-
+# based on https://github.com/thiggy01/ubuntu-20.04-change-gdm-background
+#
 # Check if script is run by root.
+
 if [ "$(id -u)" -ne 0 ] ; then
     echo 'This script must be run as root.'
     exit 1
@@ -88,9 +89,10 @@ if [[ $(file --mime-type -b "$1") == image/*g ]]; then
     echo '<?xml version="1.0" encoding="UTF-8"?>
 <gresources>
     <gresource prefix="/org/gnome/shell/theme">' > "$workDir"/theme/"$gdm3xml"
+
     for file in `gresource list "$gdm3Resource~"`; do
-	echo "        <file>${file#\/org\/gnome/shell\/theme\/}</file>" \
-	>> "$workDir"/theme/"$gdm3xml"
+		echo "        <file>${file#\/org\/gnome/shell\/theme\/}</file>" \
+		>> "$workDir"/theme/"$gdm3xml"
     done
     echo "        <file>$imgFile</file>" >> "$workDir"/theme/"$gdm3xml"
     echo '    </gresource>
@@ -104,21 +106,22 @@ if [[ $(file --mime-type -b "$1") == image/*g ]]; then
 
     # Check if gresource was sucessfuly moved to its default folder.
     if [ "$?" -eq 0 ]; then
-    # Solve a permission change issue (thanks to @huepf from github).
-	chmod 644 "$gdm3Resource"
-	echo 'GDM background sucessfully changed.'
-	read -p 'Do you want to restart gdm to apply change? (y/n):' -n 1
-	echo
-	if [ "$REPLY" == "y" ]; then
-	    service gdm restart
-	else
-	    echo "Change will be applied only after restarting gdm"
-	    echo
-	fi
-    else
-	echo 'something went wrong.'
-	restore
-	echo 'No changes were applied.'
+
+    	# Solve a permission change issue (thanks to @huepf from github).
+		chmod 644 "$gdm3Resource"
+		echo 'GDM background sucessfully changed.'
+		read -p 'Do you want to restart gdm to apply change? (y/n):' -n 1
+		echo
+		if [ "$REPLY" == "y" ]; then
+	    	service gdm restart
+		else
+	    	echo "Change will be applied only after restarting gdm"
+	    	echo
+		fi
+   	else
+		echo 'something went wrong.'
+		restore
+		echo 'No changes were applied.'
     fi
 
     # Remove temporary directories and files.
