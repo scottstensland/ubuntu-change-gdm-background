@@ -7,36 +7,16 @@ it works for either 20.04 or 20.10
 sudo ./ubuntu-change-gdm-background.sh  /path/to/image.jpeg #  jpeg or png
 
 
-# ...
 
 
-tar -zcvf file.tar.gz /path/to/filename
-
-tar -zcvf ./ubuntu-gdm-set-background.sh.tar.gz  ./ubuntu-gdm-set-background.sh
+# .......... do below for Ubuntu 22.04
 
 
+#    download tar archive and decompress to file
 
-# ... else for Ubuntu 22.04   do this
-
-
-
-wget   https://github.com/scottstensland/ubuntu-change-gdm-background/blob/master/ubuntu-gdm-set-background.tar.gz  
-
-tar xvf ubuntu-gdm-set-background.tar.gz 
+wget -qO -  https://github.com/scottstensland/ubuntu-change-gdm-background/blob/master/ubuntu-gdm-set-background.sh.tar.gz?raw=true |   tar zx --strip-components=1  ./ubuntu-gdm-set-background.sh
 
 
-
-# ...  download raw script file to local file
-
-
-wget -O ubuntu-gdm-set-background.sh     https://github.com/scottstensland/ubuntu-change-gdm-background/raw/master/ubuntu-gdm-set-background.sh  
-
-sudo ./ubuntu-gdm-set-background.sh  /some/cool/image/goes/here.jpeg  #  copy  image to Ubuntu 22.04 login splash screen
-
-
-
-# ...
-
-tar -czvf  ./ubuntu-gdm-set-background.tar.gz ./ubuntu-gdm-set-background 
-
+# execute file as root to copy image to Ubuntu 22.04 login splash background screen image
+sudo ./ubuntu-gdm-set-background.sh   --image  /some/cool/image.jpeg
 
