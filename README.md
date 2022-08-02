@@ -21,5 +21,4 @@ execute file as root to copy image to Ubuntu 22.04 login splash background scree
 
 ```
 sudo ./ubuntu-gdm-set-background.sh   --image  /some/cool/image.jpeg
-
 ```
