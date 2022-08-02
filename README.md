@@ -22,3 +22,10 @@ execute file as root to copy your local file  `/some/cool/image.jpeg` to Ubuntu 
 ```
 sudo ./ubuntu-gdm-set-background.sh   --image  /some/cool/image.jpeg
 ```
+
+Changes will be effective after a Reboot (CTRL+ALT+F1 may show the changes immediately)
+If something went wrong, log on to tty and run the below command
+
+```
+sudo update-alternatives --quiet --set gdm-theme.gresource /usr/share/gnome-shell/theme/Yaru/gnome-shell-theme.gresource
+```
