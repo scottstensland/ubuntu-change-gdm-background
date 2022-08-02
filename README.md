@@ -8,3 +8,13 @@ sudo ./ubuntu-change-gdm-background.sh  /path/to/image.jpeg #  jpeg or png
 
 
 
+# ... else for Ubuntu 22.04   do this
+
+
+
+
+# ...
+
+tar -czvf  ./ubuntu-gdm-set-background.tar.gz ./ubuntu-gdm-set-background 
+
+
